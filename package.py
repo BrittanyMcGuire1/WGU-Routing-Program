@@ -20,8 +20,9 @@ class Package:
         self.truck_id = None
         self.status = 'At Hub'
         self.departure_time = None
+        self.delivery_time = None
 
-    # "Special" method that tells the program how to print the object.
+        # "Special" method that tells the program how to print the object.
     # Time Complexity O(1)
     # Space Complexity O(1)
     def __str__(self):
@@ -64,19 +65,19 @@ class Package:
                 address = self.updated_address
                 zip_code = self.updated_zip
 
-        # return (
-        #     f"{'Package ID:':<15} {self.package_id:<20} {'Truck:':<10} {self.truck_id}\n"
-        #     f"{'Address:':<15} {address:<20} {'City:':<10} {self.city}\n"
-        #     f"{'Zip Code:':<15} {zip_code:<20} {'Deadline:':<10} {self.deadline}\n"
-        #     f"{'Weight:':<15} {str(self.weight) + ' lbs':<20} {'Status:':<10} {temp_status}\n"
-        #     f"{'Delivery Time:':<15} {str(temp_delivery_time):<20} {'Notes:':<10} {self.notes}\n"
-        #     f"{'-' * 80}"
-        # )
+        return (
+            f"{'Package ID:':<15} {self.package_id:<20} {'Truck:':<10} {self.truck_id}\n"
+            f"{'Address:':<15} {address:<20} {'City:':<10} {self.city}\n"
+            f"{'Zip Code:':<15} {zip_code:<20} {'Deadline:':<10} {self.deadline}\n"
+            f"{'Weight:':<15} {str(self.weight) + ' lbs':<20} {'Status:':<10} {temp_status}\n"
+            f"{'Delivery Time:':<15} {str(temp_delivery_time):<20} {'Notes:':<10} {self.notes}\n"
+            f"{'-' * 80}"
+        )
 
 
-        return (f"Package {self.package_id} (Truck {self.truck_id}): {address}, {self.city}, {zip_code} | "
-                f"Deadline: {self.deadline}, Weight: {self.weight}, Notes: {self.notes} | "
-                f"Status: {temp_status}, Delivery Time: {temp_delivery_time}")
+        # return (f"Package {self.package_id} (Truck {self.truck_id}): {address}, {self.city}, {zip_code} | "
+        #         f"Deadline: {self.deadline}, Weight: {self.weight}, Notes: {self.notes} | "
+        #         f"Status: {temp_status}, Delivery Time: {temp_delivery_time}")
 
 
 

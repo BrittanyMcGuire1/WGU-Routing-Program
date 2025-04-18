@@ -55,8 +55,9 @@ def nearest_neighbor_algorithm(truck):
 
         # Updates the package
         # Used the helper to mark delivered
-        next_pkg.update_status("Delivered", truck.time)
+        next_pkg.delivery_time = truck.time
         next_pkg.truck_id = truck.truck_id
+        next_pkg.update_status("Delivered", truck.time)
         package_table.insert(next_pkg.package_id, next_pkg)
         truck.end_time = truck.time
 
@@ -73,9 +74,6 @@ def nearest_neighbor_algorithm(truck):
     truck.mileage += return_distance
     print(f"\nTruck {truck.truck_id} returned to WGU at {truck.time}.\n")
     print(f"Total distance traveled for truck {truck.truck_id} was {round(truck.mileage, 1)} miles.\n")
-
-
-
 
 # Set up trucks
 #Time Complexity O(n)
@@ -103,8 +101,7 @@ for pkg_id in truck3.package_ids:
 # Deliver packages using Nearest Neighbor
 nearest_neighbor_algorithm(truck1)
 nearest_neighbor_algorithm(truck2)
-#truck 3 does not leave until one of the trucks get back
-truck3.depart_time = min(truck1.time, truck2.time)
+truck3.depart_time = min(truck1.time, truck2.time) #truck 3 does not leave until one of the trucks get back
 truck3.time = truck3.depart_time
 package_9 = package_table.lookup(9)
 package_9.updated_address = "410 S State St"
@@ -129,14 +126,7 @@ def print_package_status_at_time(requested_time):
             status = "En route"
         else:
             status = f"Delivered at {pkg.delivery_time}"
-        if package_id in truck1.packages:
-            truck_number = 1
-        elif package_id in truck2.packages:
-            truck_number = 2
-        elif package_id in truck3.packages:
-            truck_number = 3
-        else:
-            truck_number = "Unknown"
+        truck_number = pkg.truck_id if pkg.truck_id is not None else "Unknown"
         result += f"Package {package_id} (Truck {truck_number}): {status}\n"
     return result
 
@@ -158,46 +148,25 @@ while True:
     except ValueError:
         print("Invalid input. Please enter a number from 1 to 4.\n")
         continue
-    if option == 1:
+    if option == 1: #Option 1 to display all package data
         for package_id in range(1, 41):
             pkg = package_table.lookup(package_id)
             user_time = datetime.timedelta(hours=23, minutes=59)
             print(pkg.print_status(user_time)) #prints all package info
         print(f"\nTotal mileage traveled by all trucks: {total_miles:.1f} miles\n")
-    elif option == 2:
-        user_inp = input("Enter the package id: ")
-        response = input("Enter a time to view package status (HH:MM): ")
-        # try:
-        (h, m) = map(int, response.strip().split(":"))
-        user_time = datetime.timedelta(hours=h, minutes=m)
-        package = package_table.lookup(int(user_inp))
-        print(package.print_status(user_time))
+    elif option == 2: #Option 2 to see status of a package at specific time
+        try:
+            user_inp = input("Enter the package id: ")
+            response = input("Enter a time to view package status (HH:MM): ")
+            # try:
+            (h, m) = map(int, response.strip().split(":"))
+            user_time = datetime.timedelta(hours=h, minutes=m)
+            package = package_table.lookup(int(user_inp))
+            print(package.print_status(user_time))
+        except:
+            print("Invalid input. Try again.\n")
 
-            #Compares input to package times and gives the status of the package
-        #     if user_time < package.departure_time:
-        #         status = "At hub"
-        #     elif user_time < package.delivery_time:
-        #         status = "En route"
-        #     else:
-        #         status = f"Delivered at {package.delivery_time}"
-        #
-        #
-        #     print()
-        #     print(f"Package ID: {package.package_id}")
-        #     if package.package_id == 9:
-        #         if user_time < datetime.timedelta(hours=10, minutes=20):
-        #             print(f"Address: {package.original_address}")
-        #         else:
-        #             print(f"Address: {package.updated_address}")
-        #     else:
-        #         print(f"Address: {package.address}")
-        #     print(f"Deadline: {package.deadline}")
-        #     print(f"Status: {status}\n")
-        #     print(f"Truck ID: {truck_id}\n")
-        # except Exception as e:
-        #     print(f"Error: {str(e)}")
-        #     print("Invalid time format.")
-    elif option == 3:
+    elif option == 3: #Option 3 to see all packages at specific time
         response = input("Enter a time to view package status (HH:MM): ")
         try:
             (h, m) = map(int, response.strip().split(":"))
