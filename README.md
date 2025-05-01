@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b5c4bec8-3605-475b-9039-3a0c22f2dcc9"
+</p>
+
+
 # 📦 WGUPS Routing Program
 
 This project simulates a delivery system for the **Western Governors University Parcel Service (WGUPS)**. It focuses on solving routing, timing, and delivery constraints.
