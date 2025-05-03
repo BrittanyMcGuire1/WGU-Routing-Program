@@ -1,5 +1,4 @@
                                 #Author: Brittany McGuire
-                                #Student ID#: 011067208
                                 #Title: WGUPS Routing program
 import datetime
 from truck import Truck
@@ -80,9 +79,9 @@ def nearest_neighbor_algorithm(truck):
 # Set up trucks
 #Time Complexity O(n)
 #Space Complexity O(n)
-truck1 = Truck(1, ["15", "13", "14", "16", "1", "19", "20", "29", "31", "34", "40"], "4001 South 700 East", datetime.timedelta(hours=8))
+truck1 = Truck(1, ["15", "13", "14", "16", "1", "19", "20", "23", "24", "27", "29", "31", "34", "40"], "4001 South 700 East", datetime.timedelta(hours=8))
 truck2 = Truck(2, ["3 ", "6", "18", "25", "26", "28", "30", "32", "33", "35", "36", "37", "38", "39"], "4001 South 700 East", datetime.timedelta(hours=9, minutes=5))
-truck3 = Truck(3, ["2", "4", "5", "7", "8", "9", "10", "11", "12", "17", "21", "22", "23", "24", "27"], "4001 South 700 East", None)
+truck3 = Truck(3, ["2", "4", "5", "7", "8", "9", "10", "11", "12", "17", "21", "22"], "4001 South 700 East", None)
 
 
 #Checks package ID on the truck, looks up package info, and adds the confirmed package ID to the truck’s delivery list.
