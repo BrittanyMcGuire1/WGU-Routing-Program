@@ -50,3 +50,5 @@ The WGUPS Routing Program:
 - ✅ Total mileage tracking for each truck and overall
 
 ---
+## 🌐 Contact<br/>
+[Connect with me on LinkedIn](https://www.linkedin.com/in/brittany-mcguire-59553a338/)
